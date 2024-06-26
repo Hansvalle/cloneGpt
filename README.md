@@ -382,3 +382,58 @@ const styles = StyleSheet.create({
 });
 
 export default Chat;
+----------------------------------------------------------------------
+const generateBackgroundImage = () => {
+    return (
+        <ImageBackground
+            source={require('../assets/images/background.jpg')}
+            style={{ flex: 1 }}
+            resizeMode="cover"
+        >
+            <SafeAreaView style={{ flex: 1 }}>
+                <StatusBar style="auto" />
+
+                <View style={{ flex: 1 }}>
+                    <GiftedChat
+                        messages={messages}
+                        renderInputToolbar={() => {}}
+                        user={{ _id: 1 }}
+                        minInputToolbarHeight={0}
+                        renderMessage={renderMessage}
+                        isTyping={isTyping}
+                    />
+                </View>
+
+                <View style={{ flexDirection: 'row', backgroundColor: 'rgba(0,0,0,0.2)', paddingVertical: 6, marginTop: 25, borderRadius: 80, marginHorizontal: 16, alignItems: 'center', justifyContent: 'space-around' }}>
+                    <TouchableOpacity style={{ paddingHorizontal: 13 }}>
+                        <TouchableOpacity onPress={() => navigation.goBack()}>
+                            <Ionicons name="home" size={24} color={COLORS.white} />
+                        </TouchableOpacity>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={{ paddingHorizontal: 16 }}>
+                        <TouchableOpacity onPress={() => Linking.openURL('https://www.vindeacristo.org/crencas/deus/como-orar')}>
+                            <Ionicons name="globe" size={24} color={COLORS.white} />
+                        </TouchableOpacity>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 20 }}>
+                        <TextInput
+                            value={inputMessage}
+                            onChangeText={handleInputText}
+                            placeholder="Como posso te ajudar?"
+                            placeholderTextColor={COLORS.white}
+                            style={{ color: COLORS.white, paddingHorizontal: 15, flex: 1 }}
+                        />
+
+                        <TouchableOpacity onPress={submitHandler} style={{ padding: 16, borderRadius: 8, marginHorizontal: 16 }}>
+                            <FontAwesome name="send" color={COLORS.white} size={29} />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </SafeAreaView>
+        </ImageBackground>
+    );
+};
